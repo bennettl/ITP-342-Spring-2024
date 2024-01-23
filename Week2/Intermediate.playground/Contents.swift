@@ -91,7 +91,7 @@ func orderDrink(count: Int) throws -> String {
     if inventory < count {
         throw VendingMachineError.NoInventory
     }
-
+    return ""
 }
 
 // 3. Handling
@@ -103,5 +103,6 @@ do {
 } catch {
     print(error)
 }
+
 
 
