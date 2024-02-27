@@ -19,6 +19,7 @@
 		4D9903092B74719F00288A2A /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9903082B74719F00288A2A /* Quote.swift */; };
 		4D99030B2B7471CD00288A2A /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D99030A2B7471CD00288A2A /* QuoteViewModel.swift */; };
 		4D99030D2B7475F700288A2A /* RandomQuotePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D99030C2B7475F700288A2A /* RandomQuotePage.swift */; };
+		4DF91E902B8D80C1007B27DD /* QuoteTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF91E8F2B8D80C1007B27DD /* QuoteTabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		4D9903082B74719F00288A2A /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		4D99030A2B7471CD00288A2A /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
 		4D99030C2B7475F700288A2A /* RandomQuotePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomQuotePage.swift; sourceTree = "<group>"; };
+		4DF91E8F2B8D80C1007B27DD /* QuoteTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				4D99030C2B7475F700288A2A /* RandomQuotePage.swift */,
 				4D153F0A2B7DB66400970788 /* QuoteListPage.swift */,
 				4D153F0C2B7DB83A00970788 /* QuoteCell.swift */,
+				4DF91E8F2B8D80C1007B27DD /* QuoteTabView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				4D99030B2B7471CD00288A2A /* QuoteViewModel.swift in Sources */,
 				4D153F0B2B7DB66400970788 /* QuoteListPage.swift in Sources */,
 				4D153F0D2B7DB83A00970788 /* QuoteCell.swift in Sources */,
+				4DF91E902B8D80C1007B27DD /* QuoteTabView.swift in Sources */,
 				4D9903092B74719F00288A2A /* Quote.swift in Sources */,
 				4D9902DC2B74713F00288A2A /* RandomQuoteGeneratorApp.swift in Sources */,
 			);

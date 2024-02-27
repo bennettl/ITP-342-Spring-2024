@@ -11,7 +11,7 @@ import SwiftUI
 struct RandomQuoteGeneratorApp: App {
     var body: some Scene {
         WindowGroup {
-            RandomQuotePage()
+            QuoteTabView()
         }
     }
 }

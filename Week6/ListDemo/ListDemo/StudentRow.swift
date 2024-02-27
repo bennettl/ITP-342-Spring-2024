@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct StudentRow: View {
+    let student: Student
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack (alignment: .leading, spacing: 8) {
+            Text(student.name)
+                .font(.title3)
+            Text(student.hometown)
+                .font(.caption)
+                .bold()
+                .foregroundStyle(Color.teal)
+        }
+        .padding(.vertical, 10)
     }
 }
 
 #Preview {
-    StudentRow()
+    StudentRow(student: Student(name: "John", hometown: "Los Angeles"))
 }

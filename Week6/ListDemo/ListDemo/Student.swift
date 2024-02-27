@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+struct Student : Identifiable, Hashable {
+    let name: String
+    let hometown: String
+
+    var id: String {
+        name
+    }
+    
+}
+
