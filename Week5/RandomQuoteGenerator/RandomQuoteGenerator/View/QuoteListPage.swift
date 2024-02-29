@@ -8,16 +8,25 @@
 import SwiftUI
 
 struct QuoteListPage: View {
-    @StateObject var viewModel = QuoteViewModel()
+    @EnvironmentObject var viewModel: QuoteViewModel
 
     var body: some View {
-        List(viewModel.quotes) {
-            QuoteCell($0)
+        List(viewModel.quotes) { quote in
+            NavigationLink(value: quote) {
+                QuoteCell(quote)
+            }
         }
+        .toolbar {
+            NavigationLink("New", value: Route.new)
+        }
+        .navigationTitle("Quote")
     }
 }
 
 #Preview {
-    QuoteListPage()
+    NavigationStack{
+        QuoteListPage()
+    }
+        .environmentObject(QuoteViewModel())
 }
 

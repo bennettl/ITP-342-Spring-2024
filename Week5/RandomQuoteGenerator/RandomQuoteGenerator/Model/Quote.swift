@@ -7,9 +7,10 @@
 
 import Foundation
 
-struct Quote : Identifiable {
+struct Quote : Identifiable, Hashable {
     let id: UUID
     let author: String
     let message: String
+
 }
 

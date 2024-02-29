@@ -8,12 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var password = ""
+    @State var path = NavigationPath()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack(path: $path) {
+            VStack {
+                TextField("Password", text: $password)
+                Button("Submit") {
+                    if password == "Password" {
+                        path.append(Color.teal)
+                    }
+                }
+            }
+            .navigationDestination(for: Color.self) {
+                $0
+            }
         }
         .padding()
     }

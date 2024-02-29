@@ -11,7 +11,7 @@ import Combine
 class QuoteViewModel : ObservableObject {
 
     @Published var currentIndex = 0
-    var quotes: [Quote]
+    @Published var quotes: [Quote]
 
     var currentQuote : Quote? {
         if quotes.isEmpty {
@@ -59,6 +59,18 @@ class QuoteViewModel : ObservableObject {
 //        quotes.append(
 //            .init(author: author, message: message)
 //        )
+    }
+
+    func update(quote: Quote) {
+        let index = quotes.firstIndex {
+            $0.id == quote.id
+        }
+
+        guard let index else {
+            return
+        }
+
+        quotes[index] = quote
     }
 
     func remove(at index: Int) {

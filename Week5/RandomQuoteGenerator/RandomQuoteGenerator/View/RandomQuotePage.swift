@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct RandomQuotePage: View {
-    @StateObject var quoteViewModel = QuoteViewModel()
+    @EnvironmentObject var viewModel: QuoteViewModel
 
     var body: some View {
         VStack(spacing: 12) {
-            if let quote = quoteViewModel.currentQuote {
+            if let quote = viewModel.currentQuote {
                 Text(quote.message)
                     .font(.title)
                     .multilineTextAlignment(.center)
@@ -21,16 +21,18 @@ struct RandomQuotePage: View {
             }
 
             Button("Generate") {
-                quoteViewModel.randomize()
+                viewModel.randomize()
             }
             .font(.title)
         }
         .onAppear {
-            quoteViewModel.randomize()
+            viewModel.randomize()
         }
     }
 }
 
 #Preview {
     RandomQuotePage()
+        .environmentObject(QuoteViewModel())
+
 }
