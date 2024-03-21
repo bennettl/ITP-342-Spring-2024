@@ -10,8 +10,13 @@ import Combine
 
 class QuoteViewModel : ObservableObject {
 
+    private let fileUrl: URL
     @Published var currentIndex = 0
-    @Published var quotes: [Quote]
+    @Published var quotes: [Quote] {
+        didSet {
+            save()
+        }
+    }
 
     var currentQuote : Quote? {
         if quotes.isEmpty {
@@ -22,6 +27,13 @@ class QuoteViewModel : ObservableObject {
     }
 
     init() {
+        let url = FileManager.default.urls(
+            for: .documentDirectory,
+            in: .userDomainMask
+        ).first!
+
+        fileUrl = URL(string:"\(url)/quotes.json")!
+
         quotes = [
             Quote(
                 id: UUID(),
@@ -49,6 +61,11 @@ class QuoteViewModel : ObservableObject {
                 message: "Delulu is the solulu"
             )
         ]
+
+        if let loadedQuotes = load() {
+            quotes = loadedQuotes
+        }
+
     }
 
     func create(author: String, message: String) {
@@ -60,6 +77,7 @@ class QuoteViewModel : ObservableObject {
 //            .init(author: author, message: message)
 //        )
     }
+
 
     func update(quote: Quote) {
         let index = quotes.firstIndex {
@@ -90,6 +108,29 @@ class QuoteViewModel : ObservableObject {
         }
         
         currentIndex = randomIndex
+    }
+
+    // Take our array of quotes, encode it to a JSON array, and save to disk
+    private func save() {
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(quotes)
+            try data.write(to: fileUrl)
+        } catch {
+            print(error)
+        }
+    }
+
+    private func load() -> [Quote]?{
+        do {
+            let data = try Data(contentsOf: fileUrl)
+            let decoder = JSONDecoder()
+            let quotes = try decoder.decode([Quote].self, from: data)
+            return quotes
+        } catch {
+            print(error)
+            return nil
+        }
     }
 
 }

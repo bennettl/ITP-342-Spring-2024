@@ -7,28 +7,81 @@
 
 import SwiftUI
 
+struct User : Codable {
+    let firstName: String
+    let lastName: String
+}
+
 struct ContentView: View {
     var body: some View {
-        Button("Save To Documents Folder") {
-            let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        VStack {
+            Button("Load User From Documents Directory") {
+                let url = FileManager.default.urls(
+                    for: .documentDirectory,
+                    in: .userDomainMask
+                ).first!
 
-            print("url \(url)")
+                let fileUrl = "\(url)/user.json"
 
-            let fileUrl = "\(url)/my-file.txt"
-
-            let data = "Here is some data to save"
-
-            do {
-                try data.write(
-                    to: URL(string: fileUrl)!,
-                    atomically: true,
-                    encoding: .utf8
+                do {
+                    let data = try Data(contentsOf: URL(string: fileUrl)!)
+                    let decoder = JSONDecoder()
+                    let user = try decoder.decode(User.self, from: data)
+                    print(user.firstName)
+                    print(user.lastName)
+                } catch {
+                    print(error)
+                }
+            }
+            Button("Save User to Documents Folder"){
+                let user = User(
+                    firstName: "Bennett",
+                    lastName: "Lee"
                 )
-            } catch {
-                print(error)
+
+                let encoder = JSONEncoder()
+                do {
+                    let data = try encoder.encode(user)
+                    let str = String(data: data, encoding: .utf8)!
+                    saveToDisk(
+                        value: str,
+                        filename: "user.json"
+                    )
+                } catch {
+                    print(error)
+                }
+
+            }
+
+            Button("Save String To Documents Folder") {
+                saveToDisk(
+                    value: "Here is some data to save",
+                    filename: "my-file.txt"
+                )
             }
         }
         .padding()
+    }
+
+    func saveToDisk(value: String, filename: String) {
+        let url = FileManager.default.urls(
+            for: .documentDirectory,
+            in: .userDomainMask
+        ).first!
+
+        print("url \(url)")
+
+        let fileUrl = "\(url)/\(filename)"
+
+        do {
+            try value.write(
+                to: URL(string: fileUrl)!,
+                atomically: true,
+                encoding: .utf8
+            )
+        } catch {
+            print(error)
+        }
     }
 }
 
